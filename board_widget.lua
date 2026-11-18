@@ -201,8 +201,10 @@ function ModulePanel:paintTo(bb, x, y)
     end
 end
 
-function ModulePanel:refresh()
-    UIManager:setDirty(self, function() return "ui", self.paint_rect or self.dimen end)
+-- `parent` is the screen: UIManager only repaints top-level widgets, so
+-- marking this widget itself dirty would refresh the old pixels.
+function ModulePanel:refresh(parent)
+    UIManager:setDirty(parent or self, function() return "ui", self.paint_rect or self.dimen end)
 end
 
 -- ---------------------------------------------------------------------------

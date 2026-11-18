@@ -324,7 +324,7 @@ function DefuserScreen:onTurn(d)
     b.started = b.started or os.time()
     b:turnDial(self.module, d)
     self:save()
-    self.panel:refresh()
+    self.panel:refresh(self)
 end
 
 function DefuserScreen:onSet()
